@@ -1,3 +1,6 @@
+//import 'dart:html';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/test/single/Align.dart';
 import 'package:flutter_app/test/single/AspectRatio.dart';
@@ -67,17 +70,24 @@ const List<String> multiLayoutWidgets = [
   "CustomMultiChildLayout",
 ];
 
+/**
+ *
+ * 它是一个名为_的变量，通常是因为你不打算使用它，然后扔掉它。例如，您可以使用名称x或foo代替。(_)和()之间的区别很简单，一个函数接受参数，而另一个函数不接受。
+ */
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter Layout Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        primaryColor: Colors.green,
+        scaffoldBackgroundColor: Colors.yellow
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      color:Colors.amber,
+      home: new MyHomePage(title1: 'Flutter Demo Home Page'),
       routes: <String, WidgetBuilder>{
-        '/Container': (_) => new LYContainer(),
+        "/Container" : (a) => new LYContainer(),
         '/Padding': (_) => new LYPadding(),
         '/Center': (_) => new LYCenter(),
         '/Align': (_) => new LYAlign(),
@@ -95,7 +105,6 @@ class MyApp extends StatelessWidget {
         '/SizedOverflowBox': (_) => new LYSizedOverflowBox(),
         '/Transform': (_) => new LYTransform(),
         '/CustomSingleChildLayout': (_) => new LYCustomSingleChildLayout(),
-
         '/Row': (_) => new LYRow(),
         '/Column': (_) => new LYColumn(),
         '/Stack': (_) => new LYStack(),
@@ -108,14 +117,20 @@ class MyApp extends StatelessWidget {
         '/ListView': (_) => new LYListView(),
         '/CustomMultiChildLayout': (_) => new LYCustomMultiChildLayout(),
       },
+      debugShowCheckedModeBanner: false,
+      showSemanticsDebugger: false,
+      showPerformanceOverlay: false,
+      checkerboardOffscreenLayers: false,
+      checkerboardRasterCacheImages: false,
+      debugShowMaterialGrid: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title1}) : super(key: key);
 
-  final String title;
+  final String title1;
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
@@ -136,9 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
     layoutWidgets.addAll(multiLayoutWidgets);
 
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
+
       body: new ListView.builder(
         itemBuilder: (BuildContext buildContext, int index) {
           return new ListTile(
@@ -158,6 +171,98 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         itemCount: (singleLayoutWidgets.length + multiLayoutWidgets.length + 2),
       ),
+      appBar: AppBar(
+        leading: null,
+        automaticallyImplyLeading : false,
+        title: Text(widget.title1),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.ac_unit),
+            onPressed: (){
+
+            },
+          ),
+          new PopupMenuButton<String>(
+              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+                new PopupMenuItem(child: new Text("我的")),
+                new PopupMenuItem(child: new Text("设置")),
+                new PopupMenuItem(child: new Text("钱包")),
+              ]
+          )
+        ],
+        elevation: 10,
+        shape: new RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: new BorderSide(
+          style: BorderStyle.none,
+        )),
+        backgroundColor:Colors.green,
+        brightness: Brightness.light,
+        iconTheme: IconTheme.of(context).copyWith(color: Colors.black),
+        actionsIconTheme: IconTheme.of(context).copyWith(color: Colors.black),
+        textTheme: Theme.of(context).textTheme.apply(fontSizeFactor: 1.2),
+        primary:true,
+        centerTitle: true,
+        titleSpacing:10,
+        toolbarOpacity:1.0,
+        bottomOpacity :0.5,
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        tooltip: 'Increment',
+        foregroundColor: Colors.cyanAccent,
+        backgroundColor: Colors.green,
+        focusColor: Colors.red,
+        hoverColor:Colors.black,
+        onPressed: null,
+        shape :const CircleBorder(),
+        clipBehavior: Clip.none,
+        focusNode:  null,
+        isExtended: true,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonAnimator:FloatingActionButtonAnimator.scaling,
+      persistentFooterButtons:<Widget>[
+        Text('取消'),
+        Text('确定')
+      ],
+      drawer: new Drawer(
+        child: new UserAccountsDrawerHeader(
+          accountName: new Text(
+            "Flutter",
+          ),
+          accountEmail: new Text(
+            "Flutter@gmail.com",
+          ),
+        ),
+      ),
+      bottomNavigationBar:BottomNavigationBar(
+        items:[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(
+              '首页',
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(
+              '社区',
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(
+              '我的',
+            ),
+          ),
+        ],
+        currentIndex:0,
+      ),
+      bottomSheet:Text('底部弹出框'),
+      primary:true,
+      drawerDragStartBehavior: DragStartBehavior.down,
+      extendBody: true,
+      drawerScrimColor: Color.fromARGB(50, 0, 0, 0),
     );
   }
 }
