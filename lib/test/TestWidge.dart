@@ -80,14 +80,13 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Layout Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.red,
-        primaryColor: Colors.green,
-        scaffoldBackgroundColor: Colors.yellow
-      ),
-      color:Colors.amber,
+          primarySwatch: Colors.red,
+          primaryColor: Colors.green,
+          scaffoldBackgroundColor: Colors.yellow),
+      color: Colors.amber,
       home: new MyHomePage(title1: 'Flutter Demo Home Page'),
       routes: <String, WidgetBuilder>{
-        "/Container" : (a) => new LYContainer(),
+        "/Container": (a) => new LYContainer(),
         '/Padding': (_) => new LYPadding(),
         '/Center': (_) => new LYCenter(),
         '/Align': (_) => new LYAlign(),
@@ -151,7 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
     layoutWidgets.addAll(multiLayoutWidgets);
 
     return new Scaffold(
-
       body: new ListView.builder(
         itemBuilder: (BuildContext buildContext, int index) {
           return new ListTile(
@@ -173,58 +171,53 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       appBar: AppBar(
         leading: null,
-        automaticallyImplyLeading : false,
+        automaticallyImplyLeading: false,
         title: Text(widget.title1),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.ac_unit),
-            onPressed: (){
-
-            },
+            onPressed: () {},
           ),
           new PopupMenuButton<String>(
               itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-                new PopupMenuItem(child: new Text("我的")),
-                new PopupMenuItem(child: new Text("设置")),
-                new PopupMenuItem(child: new Text("钱包")),
-              ]
-          )
+                    new PopupMenuItem(child: new Text("我的")),
+                    new PopupMenuItem(child: new Text("设置")),
+                    new PopupMenuItem(child: new Text("钱包")),
+                  ])
         ],
         elevation: 10,
-        shape: new RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: new BorderSide(
-          style: BorderStyle.none,
-        )),
-        backgroundColor:Colors.green,
+        shape: new RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: new BorderSide(
+              style: BorderStyle.none,
+            )),
+        backgroundColor: Colors.green,
         brightness: Brightness.light,
         iconTheme: IconTheme.of(context).copyWith(color: Colors.black),
         actionsIconTheme: IconTheme.of(context).copyWith(color: Colors.black),
         textTheme: Theme.of(context).textTheme.apply(fontSizeFactor: 1.2),
-        primary:true,
+        primary: true,
         centerTitle: true,
-        titleSpacing:10,
-        toolbarOpacity:1.0,
-        bottomOpacity :0.5,
+        titleSpacing: 10,
+        toolbarOpacity: 1.0,
+        bottomOpacity: 0.5,
       ),
-
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         tooltip: 'Increment',
         foregroundColor: Colors.cyanAccent,
         backgroundColor: Colors.green,
         focusColor: Colors.red,
-        hoverColor:Colors.black,
+        hoverColor: Colors.black,
         onPressed: null,
-        shape :const CircleBorder(),
+        shape: const CircleBorder(),
         clipBehavior: Clip.none,
-        focusNode:  null,
+        focusNode: null,
         isExtended: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButtonAnimator:FloatingActionButtonAnimator.scaling,
-      persistentFooterButtons:<Widget>[
-        Text('取消'),
-        Text('确定')
-      ],
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      persistentFooterButtons: <Widget>[Text('取消'), Text('确定')],
       drawer: new Drawer(
         child: new UserAccountsDrawerHeader(
           accountName: new Text(
@@ -235,8 +228,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      bottomNavigationBar:BottomNavigationBar(
-        items:[
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text(
@@ -256,10 +249,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
-        currentIndex:0,
+        currentIndex: 0,
       ),
-      bottomSheet:Text('底部弹出框'),
-      primary:true,
+      bottomSheet: Text('底部弹出框'),
+      primary: true,
       drawerDragStartBehavior: DragStartBehavior.down,
       extendBody: true,
       drawerScrimColor: Color.fromARGB(50, 0, 0, 0),
